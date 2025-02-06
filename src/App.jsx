@@ -2,6 +2,7 @@ import React from "react";
 import Dashboard from "./pages/dashboard";
 import Products from "./pages/products";
 import Orders from "./pages/orders";
+import AddProduct from "./pages/addProduct";
 
 import {
   BrowserRouter as Router,
@@ -37,6 +38,7 @@ const Root = () => (
       <Route path="/users/dashboard" element={<Dashboard />} />
       <Route path="/users/products" element={<Products />} />
       <Route path="/users/orders" element={<Orders />} />
+      <Route path="/users/addProducts" element={<AddProduct />} />
     </Routes>
   </Router>
 );
