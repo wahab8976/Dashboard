@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import SideNavbar from "../components/SideNavbar";
+import Tags from "../components/Tags";
+import { useEffect } from "react";
 
 const AddProduct = () => {
+  const [tagName, setTagName] = useState("");
+  const [tagsList, setTagsList] = useState([]);
+
+  const onTextAreaChange = (e) => {
+    const value = e.target.value;
+    setTagName(value);
+
+    // If the value contains a newline character, add the tag to the list
+    if (value.includes("\n")) {
+      const newTag = value.trim();
+      if (newTag && !tagsList.includes(newTag)) {
+        setTagsList((prevTagsList) => [...prevTagsList, newTag]); // Add the tag to the list
+        setTagName(""); // Clear the tag input field
+      }
+    }
+  };
+
+  const removeTag = (tag) => {
+    setTagsList((prevTagsList) => prevTagsList.filter((t) => t !== tag));
+  };
+
+  useEffect(() => {
+    console.log(`Taglist is ${tagsList}`);
+  }, [tagsList]);
+
   return (
     <div className="flex">
       {/* Side Navigation */}
@@ -80,10 +107,24 @@ const AddProduct = () => {
 
             {/* Tags Section */}
             <h3 className="text-xl mt-4">Tags</h3>
-            <textarea className="mt-2 p-2 w-[25%] h-32 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <textarea
+              value={tagName}
+              onChange={onTextAreaChange}
+              className="mt-2 p-2 w-[25%] h-32 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter tags, press enter to add"
+            />
 
             {/* Add other fields as needed */}
           </form>
+
+          <div className="flex gap-2">
+            {/* Render the tags */}
+            Tags:{" "}
+            {tagsList.length > 0 &&
+              tagsList.map((tag, index) => (
+                <Tags key={index} tags={tag} removeTag={removeTag} />
+              ))}
+          </div>
         </div>
       </section>
     </div>
