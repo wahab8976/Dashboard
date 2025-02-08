@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SideNavbar from "../components/SideNavbar";
 import ProductCard from "../components/ProductCard";
+import Spinner from "../components/Spinner";
 
 const Products = () => {
   const [products, setProducts] = useState([]);

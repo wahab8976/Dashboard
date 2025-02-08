@@ -7,7 +7,7 @@ import ConfirmDeletion from "./ConfirmDeletion";
 
 const OverFlowBadge = ({
   itemName,
-  itemDBId,
+  productDBId,
   overFlowBadge,
   setOverFlowBadge,
 }) => {
@@ -46,6 +46,7 @@ const OverFlowBadge = ({
 
       {confirmDeletion && (
         <ConfirmDeletion
+          productDBId={productDBId}
           itemName={itemName}
           confirmDeletion={confirmDeletion}
           setConfirmDeletion={setConfirmDeletion}

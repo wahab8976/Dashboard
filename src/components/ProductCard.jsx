@@ -49,7 +49,7 @@ function ProductCard({
         {overFlowBadge && (
           <OverFlowBadge
             itemName={name}
-            itemId={productDBId}
+            productDBId={productDBId}
             overFlowBadge={OverFlowBadge}
             setOverFlowBadge={setOverFlowBadge}
           />
