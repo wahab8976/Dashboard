@@ -31,7 +31,7 @@ const Products = () => {
           </button>
         </div>
 
-        <div className="flex flex-wrap justify-between p-4 gap-4">
+        <div className="flex flex-wrap bg-gray-200 mr-4 rounded-2xl justify-start p-4 gap-4">
           {products.length > 0 ? (
             products.map((product) => (
               <ProductCard
@@ -40,8 +40,11 @@ const Products = () => {
                 brand={product.brand}
                 category={product.category}
                 description={product.description}
-                price={product.price}
+                regularPrice={product.regularPrice}
+                salePrice={product.salePrice}
                 stock={product.stock}
+                sold={product.sold}
+                productDBId={product._id}
               />
             ))
           ) : (
