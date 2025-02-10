@@ -3,6 +3,8 @@ import Dashboard from "./pages/dashboard";
 import Products from "./pages/products";
 import Orders from "./pages/orders";
 import AddProduct from "./pages/addProduct";
+import Categories from "./pages/categories";
+import AddCategory from "./pages/addCategory";
 
 import {
   BrowserRouter as Router,
@@ -39,6 +41,8 @@ const Root = () => (
       <Route path="/users/products" element={<Products />} />
       <Route path="/users/orders" element={<Orders />} />
       <Route path="/users/addProducts" element={<AddProduct />} />
+      <Route path="/users/categories" element={<Categories />} />
+      <Route path="/users/addCategory" element={<AddCategory />} />
     </Routes>
   </Router>
 );
