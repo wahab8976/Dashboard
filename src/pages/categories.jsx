@@ -5,9 +5,24 @@ import Spinner from "../components/Spinner";
 import CategoriesTable from "../components/CategoriesTable";
 
 const Products = () => {
+  const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
-  const categories = [
+  const handleFetchAllCategories = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/categories`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setCategories(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+  const categoriesArr = [
     {
       id: 1,
       name: "Electronics",
@@ -57,6 +72,10 @@ const Products = () => {
     },
   ];
 
+  useEffect(() => {
+    handleFetchAllCategories();
+  }, []);
+
   return (
     <div className="flex">
       <SideNavbar />
@@ -71,7 +90,7 @@ const Products = () => {
           </button>
         </div>
         <div className="bg-gray-200 mr-4 rounded-2xl p-4">
-          <CategoriesTable />
+          <CategoriesTable categories={categories} />
         </div>
       </div>
     </div>

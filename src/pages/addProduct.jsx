@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SideNavbar from "../components/SideNavbar";
 import Tags from "../components/Tags";
 import { useForm } from "react-hook-form";
+import SelectDropDown from "../components/SelectDropDown";
 
 const AddProduct = () => {
   const {
@@ -14,6 +15,8 @@ const AddProduct = () => {
 
   const [tagName, setTagName] = useState("");
   const [tagsList, setTagsList] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const onTextAreaChange = (e) => {
     const value = e.target.value;
@@ -125,9 +128,16 @@ const AddProduct = () => {
             </label>
 
             {/* Category */}
-            <label className="block text-lg mt-4">
+
+            <SelectDropDown
+              setSelectedCategory={setSelectedCategory}
+              onOpenChange={(isOpen) => isOpen && handleFetchAllCategories()}
+            />
+
+            {/* <label className="block text-lg mt-4">
               Category
               <input
+                onFocus={handleFetchCategories}
                 className="mt-2 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 placeholder="Example: Chocolate"
@@ -138,7 +148,7 @@ const AddProduct = () => {
                   {errors.category.message}
                 </p>
               )}
-            </label>
+            </label> */}
 
             {/* Brand Name */}
             <label className="block text-lg mt-4">
